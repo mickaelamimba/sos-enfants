@@ -1,0 +1,27 @@
+.grid-container{
+@include grid;
+}
+.grid-row-sm-auto{
+  @include grid-row(40px)
+}
+.grid-col-sm-repeat{
+  @include grid-columns-repeat(12)
+}
+.gap{
+  @include gap(2rem)
+}
+@include grid-row-and-col('row',5, 'sm');
+@include grid-row-and-col('columm',5, 'sm');
+@include breakpoint-up(md)
+{
+  @include grid-row-and-col('row',5, 'md');
+  @include grid-row-and-col('columm',5, 'md');
+  @include col(5,'md');
+}
+
+@include breakpoint-up(xl)
+{
+  @include grid-row-and-col('row',8, 'xl');
+  @include grid-row-and-col('columm',8, 'xl');
+  @include col(8,'xl');
+}

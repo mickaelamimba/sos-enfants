@@ -1,0 +1,47 @@
+@mixin grid{
+  display: grid;
+}
+@mixin grid-columns-repeat($repeat){
+  grid-template-columns: repeat($repeat 1fr);
+}
+@mixin gap($gap){
+  grid-gap: $gap;
+}
+@mixin grid-row($size){
+  grid-auto-rows: minmax($size auto);
+}
+
+@mixin breakpoint-up($breakpoint){
+  @if map-has-key($breakpoints,$breakpoint){
+    $value : map-get($breakpoints,$breakpoint);
+    @media screen and (min-width: $value) {
+      @content() ;
+    }
+  }
+}
+
+@mixin grid-row-and-col($value,$nb,$break-point:0) {
+  @for $i from 1 through $nb {
+    @if ($break-point == 0) {
+      .grid-#{$value}-#{$i}{
+        grid-#{$value}: span $i;
+      }
+    }@else {
+      .grid-col-#{$break-point}-#{$i}{
+        grid-#{$value}: span $i;
+      }
+
+    }
+
+  }
+}
+
+@mixin col($nb,$break-point:0) {
+  @for $i from 1 through $nb{
+    .col-#{$break-point}-#{$i}{
+      width: calc((100% / 12) * #{$i});
+    }
+  }
+}
+
+
